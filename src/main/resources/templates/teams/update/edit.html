@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:object="${teams}">
+    <!-- CSS INCLUDE -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
+    <title>Racing.com | Team</title>
+</head>
+<body class="jumbotron">
+<a class="logo text-decoration-none" th:href="@{/}">
+    <div class="logo" ><img src="/images/logo.png"></div>
+</a>
+<div class="container">
+    <h1 class="page-title">Racing.com | <span th:text="*{team_name}"></span></h1>
+    <br>
+    <br>
+
+    <div class="hs navbar d-flex justify-content-evenly bg-light nav-tabs">
+        <a  class="text-decoration-none"  th:href="@{/}">Home</a>
+        <a  class="text-decoration-none"  th:href="@{/team}">Teams</a>
+        <a  class="text-decoration-none"  th:href="@{/partner}">Partners</a>
+        <a  class="text-decoration-none"  th:href="@{/person}">Drivers</a>
+    </div>
+    <div class="mt-3">
+        <form class="row g-3" th:action="@{'/team/edit/'+ ${teams.id}}"  method="post">
+            <div class="col-md-6 mt-3">
+                <div  class="col-md-4 input-group mb-3 flex-nowrap">
+                    <span class="input-group-text col-4" id="addon-wrapping">Team Name:</span>
+                    <input class="from-control" type="text" th:field="*{teams.team_name}" id="team_name" />
+                </div>
+            </div>
+
+            <div class="col-md-6 mt-3">
+                <div  class="col-md-6 input-group mb-3 flex-nowrap">
+                    <span class="input-group-text col-3" id="addon-wrapping">Power Unit:</span>
+                    <input class="from-control col-4" type="text" th:field="*{teams.power_unit}" id="team_country" />
+                </div>
+            </div>
+            <div class="col-md-6 mt-3">
+                <div  class="col-6 input-group mb-3 flex-nowrap">
+                    <span class="input-group-text col-4" id="addon-wrapping">World Championships:</span>
+                    <input class="from-control"  type="text" th:field="*{teams.world_championships}" id="world_championships" />
+                </div>
+            </div>
+            <div>
+                <span>Partners:</span>
+                <div>
+                    <select width="400px" th:field="${teams.partner}" multiple size="6">
+                        <option th:each="p: ${partners}" th:value="${{p.getId}}" th:text="${p.getName}"/>
+                    </select>
+                </div>
+            </div>
+            <div >
+                <div class="w-25">
+                    <input class="form-control btn btn-primary text-white" type="submit">
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+</body>
+</html>

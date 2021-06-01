@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" th:object="${partner}">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- CSS INCLUDE -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
+  <title th:text="*{name}"></title>
+</head>
+<body class="jumbotron">
+<a class="logo text-decoration-none" th:href="@{/}">
+  <div class="logo" ><img src="/images/logo.png"></div>
+</a>
+<div class="container">
+
+  <a class="text-decoration-none" th:href="@{/partner/get_partner/1}"><h1 class="page-title">Racing.com | <span th:text="*{name}"></span></h1></a>
+  <br>
+  <br>
+
+  <div class="hs navbar d-flex justify-content-evenly bg-light nav-tabs">
+    <a  class="text-decoration-none"  th:href="@{/}">Home</a>
+    <a  class="text-decoration-none"  th:href="@{/team}">Teams</a>
+    <a  class="text-decoration-none"  th:href="@{/person}">People</a>
+    <a  class="text-decoration-none"  th:href="@{/partner}">Partners</a>
+  </div>
+  <div class="jumbotron">
+    <table class="table table-striped table-dark table-sm table-bordered">
+      <thead class="tl">
+      <tr>
+        <td>Team</td>
+        <td>Power Unit</td>
+      </tr>
+      </thead>
+      <tbody class="tbtr">
+      <tr th:each="t : ${partner.team}">
+        <td ><a class="text-decoration-none" th:href="@{/team/peopleList/{team_id}(team_id=${t.getId})}"><span th:text="${t.getTeam_name}"></span></a> </td>
+        <td th:text="${t.getPower_unit}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</div>
+</body>
+</html>

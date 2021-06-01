@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" th:object="${person}">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- CSS INCLUDE -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
+  <title th:text="*{first_name + ' ' + last_name}"></title>
+</head>
+<body class="jumbotron">
+<a class="logo text-decoration-none" th:href="@{/}">
+  <div class="logo" ><img src="/images/logo.png"></div>
+</a>
+<div class="container">
+
+  <a class="text-decoration-none"  th:href="@{/person/get_person/{person_id}(person_id=${person?.getId})}"><h1 class="page-title">Racing.com | <span th:text="*{first_name + ' ' + last_name}"></span></h1></a>
+  <br>
+  <br>
+
+  <div class="hs navbar d-flex justify-content-evenly bg-light nav-tabs">
+    <a  class="text-decoration-none"  th:href="@{/}">Home</a>
+    <a  class="text-decoration-none"  th:href="@{/team}">Teams</a>
+    <a  class="text-decoration-none"  th:href="@{/partner}">Partners</a>
+    <a  class="text-decoration-none"  th:href="@{/person}">Drivers</a>
+  </div>
+  <div class="jumbotron">
+    <table class="table table-striped table-dark table-sm table-bordered">
+      <thead class="tl"><tr> <h2 class="page-title" th:text="*{ first_name + ' ' + last_name }"></h2>  </tr></thead>
+      <tbody class="tbtr">
+      <tr>
+        <td>Car Number</td>
+        <td ><span class="badge rounded-pill bg-primary" th:text="*{profile?.getCar_number}"></span></td>
+      </tr>
+      <tr>
+        <td>Team</td>
+        <td ><a class="text-decoration-none" th:href="@{/team/peopleList/{team_id}(team_id=${person?.team?.getId})}"><span th:text="*{team?.getTeam_name}"></span></a> </td>
+      </tr>
+      <tr>
+        <td>Power Unit</td>
+        <td th:text="*{team?.getPower_unit}"></td>
+      </tr>
+      <tr>
+        <td>Profession</td>
+        <td th:text="*{profile?.getJob_type}"></td>
+      </tr>
+      <tr>
+        <td>Points</td>
+        <td ><span class="w3-badge w3-purple" th:text="*{profile?.getPoints}"></span></td>
+      </tr>
+      <tr>
+        <td>Nationality</td>
+        <td > <span  th:text="*{profile?.getNationality}"></span></td>
+      </tr>
+      <tr>
+        <td>Podiums</td>
+        <td ><span class="w3-badge w3-orange text-white" th:text="*{profile?.getPodiums}"></span></td>
+      </tr>
+      <tr>
+        <td>Grand Prix Entered</td>
+        <td ><span class="w3-badge w3-lime text-white" th:text="*{profile?.getGrand_prix_entered}"></span></td>
+      </tr>
+      <tr>
+        <td>World Championships</td>
+        <td ><span class="w3-badge w3-red" th:text="*{profile?.getWorld_championships}"></span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+</div>
+</body>
+</html>

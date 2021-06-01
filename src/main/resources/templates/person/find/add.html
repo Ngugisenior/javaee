@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- CSS INCLUDE -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
+    <title>Racing.com | Drivers</title>
+</head>
+    <body class="jumbotron">
+        <a class="logo text-decoration-none" th:href="@{/}">
+            <div class="logo" ><img src="/images/logo.png"></div>
+        </a>
+        <div class="container">
+        <h1><a class="text-decoration-none" th:href="@{/person/add}">Racing.com | Drivers</a> </h1>
+            <div class=" hs navbar d-flex justify-content-around bg-light nav-tabs hs">
+                <a class="text-decoration-none"  th:href="@{/}">Home</a>
+                <a class="text-decoration-none"  th:href="@{/team}">Teams</a>
+                <a class="text-decoration-none"  th:href="@{/partner}">Partners</a>
+                <a class="text-decoration-none"  th:href="@{/person}">Drivers</a>
+            </div>
+            <div>
+
+                <form class="row g-3" th:action="@{/person/add}" th:object="${person}" method="post">
+                    <div class="col-md-6 mt-5">
+                        <div class="input-group col-md-4 mb-3">
+                            <span class="input-group-text col-3" id="addon-wrapping">First Name:</span>
+                            <input class="form-control" type="text" th:field="*{first_name}" placeholder="First Name" id="first_name" required/>
+                        </div>
+                        <div class=" input-group  col-md-4 mb-3">
+                            <span class="input-group-text col-3" id="addon-wrapping">Last Name:</span>
+                            <input class="form-control" type="text" th:field="*{last_name}" placeholder="Last Name" id="last_name" required/>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-5">
+                        <div class=" col-md-4 input-group mb-3 flex-nowrap">
+                            <span class="input-group-text col-3" id="addon-wrapping"> Car Number:</span>
+                            <input class="form-control"  th:field="*{profile.car_number}" placeholder="Car Number" id="car_number" required/>
+                        </div>
+                        <div class=" col-md-4 input-group mb-3 flex-nowrap">
+                            <span class="input-group-text col-2" id="addon-wrapping"> Job Type:</span>
+                            <input class="form-control"  th:field="*{profile.job_type}" placeholder="Job Type" id="job_type" required/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mt-5">
+                        <div class=" col-md-4 input-group mb-3 flex">
+                            <span class="input-group-text col-2" id="addon-wrapping"> Points:</span>
+                            <input class="form-control"   th:field="*{profile.points}" id="points" required/>
+                        </div>
+                        <div class=" col-md-4 input-group flex-nowrap">
+                            <span class="input-group-text col-2" id="addon-wrapping"> Podiums:</span>
+                            <input class="form-control"   th:field="*{profile.podiums}" placeholder="Podiums" id="podiums" required/>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-5">
+                        <div class=" col-md-4 input-group mb-3 flex-nowrap">
+                            <span class="input-group-text col-4" id="addon-wrapping"> Grand Prix Entered:</span>
+                            <input class="form-control"  th:field="*{profile.grand_prix_entered}" id="grand_prix_entered" required/>
+                        </div>
+                        <div class=" col-md-4 input-group mb-3 flex-nowrap">
+                            <span class="input-group-text col-4" id="addon-wrapping"> World Championships:</span>
+                            <input class="form-control"   th:field="*{profile.world_championships}" id="world_championships" required/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mt-5">
+                        <div class=" col-md-4 input-group mb-3 flex-nowrap">
+                            <span class="input-group-text col-2" id="addon-wrapping"> Nationality:</span>
+                            <input class="form-control"   th:field="*{profile.nationality}" id="nationality" required/>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-5">
+                        <div class=" col-md-4 input-group mb-3 flex-nowrap">
+                            <span class="input-group-text col-2" id="addon-wrapping"> Team:</span>
+                            <select class="form-control"   th:field="*{team}" id="team" required>
+                                <option class="btn btn-primary dropdown dropdown-toggle" value="" required>Choose...<span class="caret"></span></option>
+                                <option th:each="t: ${team}" th:value="${t.getId}" required th:text="${t.team_name}"/>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <div class="form-group">
+                            <label>
+                                <input class="btn btn-primary" type="submit">
+                            </label>
+                        </div>
+                    </div>
+                </form>
+                <br>
+                <div><a href="/person">Back</a> </div>
+            </div>
+        </div>
+    </body>
+</html>
